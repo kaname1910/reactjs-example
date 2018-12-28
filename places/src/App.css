@@ -1,0 +1,145 @@
+.Header-background {
+  padding: 50px;
+  padding-top: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.Header-illustration {
+  position: absolute;
+  z-index: -1;
+  top: 20px;
+  height: 200px;
+  border-radius: 100px
+}
+
+.Header-main {
+  margin-bottom: 2em;
+  margin-left: -200px;
+}
+
+.Header-Benefit {
+  width: 32%;
+  display: inline-block;
+  margin-right: 1%;
+  text-align: left;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.Header-Benefit div:not(.Header-Benefit-content){
+  padding: 0px !important;
+}
+
+.Header-Benefit-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-basis: 20%;
+  max-width: 20%;
+  box-sizing: border-box;
+  -webkit-box-flex:0;
+  -ms-flex: 0 0 auto;
+  /*flex:0 0 auto;*/
+  padding-right: .5em;
+  padding-left: .5em;
+}
+
+.Header-Benefit-image img {
+  max-width: 100%;
+}
+
+.Header-Benefit-content {
+  flex-basis: 65%;
+  max-width: 65%;
+  padding-top: 10px !important;
+  padding-right:  10px !important;
+  padding-left:  10px !important;
+  padding-bottom:  10px !important;
+}
+
+.container {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.textfield {
+  display: block !important;
+  width: 100% !important;
+}
+
+.Login-actions {
+  margin-top: 1em;
+  text-align: right;
+}
+
+.Login-background {
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+}
+
+.FAB{
+  position: fixed;
+  right: 2em;
+  bottom: 2em;
+}
+
+.PlaceH-avatar {
+  background-color: #f5f5f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 25%;
+  overflow: hidden;
+}
+
+.PlaceH-avatar img {
+  max-width: 80%;
+}
+
+.fade-scale-enter {
+  opacity: 0;
+  transform: scale(0);
+}
+
+.fade-scale-enter.fade-scale-enter-active {
+  opacity: 1;
+  transform: scale(1);
+  transition: all 300ms cubic-beizer(0.25,0.1,0.25,1);
+}
+
+.fade-scale-leave {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.fade-scale-leave.fade-scale-leave-active {
+  opacity: 0;
+  transform: scale(0);
+  transition: all 300ms cubic-beizer(0.25,0.1,0.25,1);
+}
+
+
+
+.left-out-enter {
+  opacity: 0;
+  transform: translateX(100%);
+}
+
+.left-out-enter-active {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.left-out-exit {
+  opacity: 1;
+  transform: translateX(100%);
+}
+
+.left-out-exit-active {
+  opacity: 0;
+  transform: translateX(0);
+}

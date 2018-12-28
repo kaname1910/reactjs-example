@@ -1,0 +1,258 @@
+Crear proyecto en react
+
+1
+
+Nodejs ejecutar
+>npm install -g create-react-app
+
+Luego para crear proyecto
+create-react-app nombre
+
+Luego para iniciar proyecto
+yarn start
+Sino ejecutar npm start
+Esto si no esta instalado el yarn
+npm install yarn
+
+2
+
+Archivo index.html no se modifica, solo includes
+
+3
+
+crear componentes
+dos tipos, paginas completas y otros mas pequeños
+Ir a scr/ y crear components/
+Archivos con extension JS
+Instalar un pack qe incluya JSX
+
+Estructura basica de cada componente
+
+import React from 'react';
+
+export default class Title extends React.Component {
+	render() { //Retorna el html, siempre debe de ir
+		return (
+			<div>
+				<h1>Places</h1>
+				<p>Descubre lugares de manera simple</p>
+			</div>
+		)
+	}
+}
+
+en el archivo App.js lo importo asi
+import Title from './components/Title';
+
+luego dentro del return lo llamo por el nombre
+  <Title></Title>
+ y listo =) 
+
+4
+
+Modulos ES6 - Expotar e importar del componente
+
+en Title.js puedo tener varias funciones
+export function hola() {
+	return 'hola';
+}
+
+solo una debe ser DEFAULT
+
+en el App.js la llamo asi
+import {hola} from './components/Title';
+
+y la uso asi, en el return del render
+{hola()}
+
+
+import {hola} from './components/Title';
+
+5
+
+Recibir datos via PROPS
+en el App.js
+<Title title='Places1'></Title>
+Paso los atributos como parametros
+
+Y en la clase Title.js
+<h1>{this.props.title}</h1>
+Los recibo asi
+
+6
+
+Archivos desde public
+creo carpetas en la carpeta public
+<img src={process.env.PUBLIC_URL + '/images/top.jpg'} height='300' />
+lo ubico en App.js, return
+
+7
+
+Material desing
+en la consola, instalar, estilos para react
+npm install material-ui
+
+en el App.js escribir
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+colocar las etiquetas
+<MuiThemeProvider>
+en lugar de <section>
+
+Button
+import RaisedButton from 'material-ui/RaisedButton';
+sustituyo
+<RaisedButton label="Crear Cuenta Gratuita" secondary={true}></RaisedButton>
+
+Colores
+Definidos en material-ui, asi importo los colores
+import {indigo400} from 'material-ui/styles/colors';
+asi los uso en el return
+ <div style={{'background-color': indigo400, 'padding': '50px'}}>
+
+8
+Distribucion de archivos
+crear carpetas para los requets, pages,  y todo llamarlo en App.js
+En App.js llamar los import como            
+<MuiThemeProvider>
+  <Home></Home>
+</MuiThemeProvider>
+
+9
+animaciones.
+Instalar react-transition-group
+
+10  
+esto es a practica, se debe crear el archivo Router.js
+integrar React Router, para manejar las rutas
+npm install react-router-dom
+
+en App.js
+import {
+    BrowserRouter as Router,
+    Link,
+    Route
+} from 'react-router-dom';
+
+retorna
+<Router>
+                    <div>
+                        <Link to="/">Home</Link>
+                        <Link to="/login" style={{"marginLeft":"1em"}}>Login</Link>
+                        <Route exact path="/" component={Home}></Route>
+                        <Route path="/login" component={Login}></Route>
+                    </div>
+                </Router>
+cada route es una ruta, y se coloca el componente que llamara
+link son los enlaces a la ruta que salen en la vista
+
+
+11
+Crear achivo router.js, 
+primero cambiar la entrada de la app en index.js
+
+import Router from './Router';
+ReactDOM.render(<Router />, document.getElementById('root'));
+
+estructura de Router.js
+
+import React from 'react';
+
+import {
+    BrowserRouter as ReactRouter,
+    Route
+} from 'react-router-dom';
+
+import Home from './pages/Home';
+import Login from './pages/Login';
+import App from './App';
+
+
+export default class Router extends React.Component {
+	render(){
+		return (
+			<ReactRouter>
+				<App>
+	                <Route exact path="/" component={Home}></Route>
+	                <Route path="/login" component={Login}></Route>
+		       	</App>
+	        </ReactRouter>
+			)
+	}
+}
+
+tiene a App como hijo unico
+
+
+En App.js
+cambiar el render
+ render() {
+        return (
+            <MuiThemeProvider>
+                {this.props.children}
+            </MuiThemeProvider>
+        );
+    }
+
+12
+Material Desing to navbar
+crear carpeta navigation en components
+crear archivo MyAppBar.js
+
+estructura
+import React from 'react';
+
+import AppBar from 'material-ui/AppBar';
+
+import {indigo600} from 'material-ui/styles/colors';
+ 
+export default class MyAppBar extends React.Component {
+	render(){
+		return(
+			<AppBar
+				title="Places"
+				style={{'backgrounColor':indigo600}}
+				showMenuIconButton={false} (Esto esconde el icono menu lateral)
+			/>
+		)
+	}
+}
+
+y en app.js
+import MyAppBar from './components/navigation/MyAppBar';
+
+render() {
+        return (
+            <MuiThemeProvider>
+                <MyAppBar></MyAppBar>
+                {this.props.children}
+            </MuiThemeProvider>
+        );
+    }
+
+
+13
+Login
+
+usar para los iinputs y button
+import TextField from 'material-ui/TextField';
+import RaisedButton from 'material-ui/RaisedButton';
+
+
+14 
+container
+
+crear un componente contenedor de todo
+estructura
+import React from 'react';
+
+const Container = (props) => {
+	return (
+		<div className="row center-xs" style={{"width":"100%"}}>
+			<div className="col-lg-9 col-md-8 col-sm-12 col-xs-12">
+				{props.children}
+			</div>
+		</div>
+	)
+}
+
+export default Container;
